@@ -1,7 +1,7 @@
-import { User } from './users.js';
-import { Product } from './product.js';
-import { Category } from './category.js';
-import { Tag } from './tag.js';
+import { User } from './users';
+import { Product } from './product';
+import { Category } from './category';
+import { Tag } from './tag';
 
 User.hasMany(Product, {
     foreignKey: {
@@ -19,7 +19,7 @@ Category.hasMany(Product, {
 });
 Product.belongsTo(Category, { foreignKey: 'categoryId' });
 
-Category.hasMany(Category, { foreignKey: 'pId' });
+Category.hasMany(Category, { foreignKey: 'pId', onDelete: 'RESTRICT' });
 Category.belongsTo(Category, { foreignKey: 'pId' });
 
 Tag.belongsToMany(Product, { through: 'ProductTag' });

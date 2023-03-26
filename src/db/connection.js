@@ -19,11 +19,11 @@ export const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
 
 export const connect = async () => {
     await sequelize.authenticate()
-    await import('./models/index.js');
+    await import('./models');
 
 
     if (process.env.ENV === 'develop') {
-        await sequelize.sync({ force: true })
+        await sequelize.sync({ alter: true })
     }
 }
 

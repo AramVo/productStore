@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import bcrypt from 'bcrypt';
 
-import { sequelize } from '../index.js';
+import { sequelize } from '../connection';
 
 export class User extends Model { }
 
@@ -36,9 +36,5 @@ User.init({
 });
 
 User.prototype.comparePasswords = async function (password) {
-    console.log({
-        password,
-        instance: this
-    });
     return bcrypt.compare(password, this.password);
 }

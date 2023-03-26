@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 
-import { sequelize } from '../index.js';
+import { sequelize } from '../connection';
 
 export class Product extends Model { }
 
@@ -16,6 +16,9 @@ Product.init({
     price: {
         type: DataTypes.DECIMAL,
         allowNull: false,
+        validate: {
+            min: 0
+        }
     },
     count: {
         type: DataTypes.INTEGER,
