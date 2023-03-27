@@ -15,6 +15,7 @@ Category.hasMany(Product, {
     foreignKey: {
         name: 'categoryId',
         allowNull: false,
+        onDelete: 'RESTRICT'
     }
 });
 Product.belongsTo(Category, { foreignKey: 'categoryId' });
@@ -29,4 +30,5 @@ export {
     User,
     Product,
     Category,
+    Tag
 }

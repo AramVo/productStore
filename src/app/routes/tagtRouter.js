@@ -1,10 +1,11 @@
 import express from 'express';
 
-import { validateProduct } from '../validators/validateProduct';
-import { createProduct } from '../controller/productController';
+import { validateTag } from '../validators/validateTag';
+import { createTag, updateTag, deleteTag } from '../controller/tagController';
 import { authMiddlware } from '../middlwares/authMiddlware';
 
-export const productRouter = express.Router();
+export const tagRouter = express.Router();
 
-productRouter.post('/', authMiddlware('seller'), validateProduct, createProduct);
-// productRouter.put('/login', validateLoginData, login);
+tagRouter.post('/', authMiddlware('seller'), validateTag, createTag);
+tagRouter.put('/:id', authMiddlware('seller'), validateTag, updateTag);
+tagRouter.delete('/:id', authMiddlware('seller'), deleteTag);
