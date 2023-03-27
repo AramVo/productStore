@@ -24,7 +24,7 @@ export async function login(data) {
     }
 
     let token = jwt.sign(
-        { email: user.email, role: user.role },
+        { id: user.id, email: user.email, role: user.role },
         process.env.JWT_SECRET,
         { algorithm: 'HS256', expiresIn: '1d' }
     );

@@ -1,4 +1,4 @@
-import { User } from './users';
+import { User } from './user';
 import { Product } from './product';
 import { Category } from './category';
 import { Tag } from './tag';
