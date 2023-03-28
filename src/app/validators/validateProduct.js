@@ -6,6 +6,7 @@ const productSchema = yup.object().shape({
     price: yup.number().min(0).required(),
     count: yup.number().min(0).required(),
     categoryId: yup.number().min(0).required(),
+    tags: yup.array().of(yup.number())
 });
 
 export function validateProduct(req, res, next) {

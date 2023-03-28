@@ -6,7 +6,7 @@ export function createCategory(data) {
 
 export async function updateCategory(data, id) {
     const category = await Category.findByPk(id);
-
+    
     if (data.pId == id) {
         throw new Error('Invalid id')
     }

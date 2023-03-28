@@ -1,7 +1,36 @@
-import { Product } from '../../db/models'
+import { Op } from 'sequelize';
 
-export function createProduct(data, userId) {
+import { Product, Tag, ProductTag } from '../../db/models'
+
+export async function createProduct(data, userId) {
     data.userId = userId;
-    return Product.create(data);
+    const { tags } = data;
+    delete data.tags
+
+    const product = await Product.create(data);
+
+    if (tags?.length) {
+        const dbTags = await Tag.findAll({
+            where: {
+                id: { [Op.in]: tags}
+            }
+        });
+
+        product.addTags(dbTags, { through: ProductTag })
+    }
+}
+
+export async function updateroduct(data, id) {
+    const product = await Product.findByPk(id);
+
+    if (product.userId != id) {
+        throw new Error('Can\'t update others products')
+    }
+
+    if (!product) {
+        throw new Error('roduct Not found')
+    }
+
+    await product.update(data)
 }
 
