@@ -20,7 +20,7 @@ export async function createProduct(data, userId) {
     }
 }
 
-export async function updateroduct(data, id) {
+export async function updateProduct(data, id) {
     const product = await Product.findByPk(id);
 
     if (product.userId != id) {
