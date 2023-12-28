@@ -1,6 +1,6 @@
 # Product Store
 
-## Run application
+##  Run application
 
 To run application you need Postgresql. You can run it via docker:
 ```
